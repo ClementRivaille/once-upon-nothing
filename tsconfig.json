@@ -1,6 +1,9 @@
 {
   "files": [
-    "src/main.ts"
+    "src/main.ts",
+    "src/lib/word.ts",
+    "src/lib/phrase.ts",
+    "src/lib/writer.ts"
   ],
   "compilerOptions": {
     "target": "es5",
