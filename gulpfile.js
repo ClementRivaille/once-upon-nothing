@@ -33,17 +33,16 @@ gulp.task('open', ['connect'], function() {
 WATCH
 ----------------------- */
 
-// // Watch all file modifications then trigger tasks dedicated to file types
+// Watch all file modifications then trigger tasks dedicated to file types
 // gulp.task('reload', function() {
 //   return gulp.src(['app/modules/**/*.js', 'app/src/**/*.js']).pipe(connect.reload());
 // });
-// gulp.task('watch', function() {
-//   livereload.listen();
-//   gulp.watch('app/**/*.html', gulp.parallel(['templates', 'reload']));
+gulp.task('watch', ['compile'], function() {
+  gulp.watch('./src/**/*.ts', ['compile']);
 //   gulp.watch('app/**/*.js', gulp.parallel(['js', 'reload']));
 //   gulp.watch('app/**/*.less', gulp.parallel(['less', 'reload']));
 //   gulp.watch('app/index.html', gulp.parallel(['inject', 'reload']));
-// });
+});
 
 
-gulp.task('default', ['compile', 'connect', 'open']);
+gulp.task('default', ['compile', 'connect', 'open', 'watch']);
