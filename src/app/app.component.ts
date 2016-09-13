@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {Http, Response} from '@angular/http';
+import { VocabularyService } from './services/vocabulary.service';
 
-import { Writer } from '../../../lib/writer';
+import { Writer } from '../lib/writer';
 
 @Component({
   selector: 'once-upon-nothing-app',
-  templateUrl: 'src/app/components/app/app.component.html'
+  templateUrl: 'src/app/app.component.html'
 })
 export class AppComponent implements OnInit { 
   title = 'Once Upon Nothing';
@@ -16,27 +17,31 @@ export class AppComponent implements OnInit {
   // Displayed story
   public story = '';
 
-  constructor(private http: Http) {}
+  constructor(private vocabularyService: VocabularyService) {}
 
   ngOnInit() {
     this.writer = new Writer();
 
-    // // Load vocubulary resources
-    this.http.get('resources/vocabulary.json').forEach(res => {
-      let json = res.json();
-      this.writer.registerResources(json);
+    // Get vocubulary resources
+    this.vocabularyService.getVocabulary().then(vocabulary => {
+      this.writer.registerResources(vocabulary);
 
         // Change probabilities here
         // writer.adjectiveProb = 1;
         // writer.adverbProb = 1;
         // writer.detailProb = 1;
         // writer.slangProb = 1;
+        
+      // Write a first story 
       this.writeStory();
     }).catch(err => {
       throw err;
     });
   }
 
+  /**
+   * Write a new story
+   */
   writeStory() {
     this.story = '';
     // Write sentences
