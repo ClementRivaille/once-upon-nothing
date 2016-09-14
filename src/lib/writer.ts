@@ -9,10 +9,12 @@ export class Writer {
   private resources: any = {};
 
   // Probability of some phrase's parts
-  public adverbProb: number = 0.6;
-  public adjectiveProb: number = 0.6;
-  public detailProb: number = 0.6;
-  public slangProb: number = 0.2;
+  public probabilities: any = {
+    adverb: 0.6,
+    adjective: 0.6,
+    detail: 0.6,
+    slang: 0.2
+  };
 
   /** Set JSON resources */
   registerResources(resources) {
@@ -40,7 +42,7 @@ export class Writer {
 
 
     let adverb = pickOne(this.resources.adverbs);
-    if (Math.random() < this.adverbProb) {
+    if (Math.random() < this.probabilities.adverb) {
       phrase.setAdverb(new Word(adverb.label, adverb.position));
     }
 
@@ -48,17 +50,17 @@ export class Writer {
     phrase.setTarget(new Word(target.label));
 
     let adjective = pickOne(this.resources.adjectives);
-    if (Math.random() < this.adjectiveProb) {
+    if (Math.random() < this.probabilities.adjective) {
       phrase.setAdjective(new Word(adjective.label, adjective.position));
     }
 
     let detail = pickOne(this.resources.details);
-    if (Math.random() < this.detailProb) {
+    if (Math.random() < this.probabilities.detail) {
       phrase.setDetail(new Word(detail.label));
     }
 
     let slang = pickOne(this.resources.slangs);
-    if (Math.random() < this.slangProb) {
+    if (Math.random() < this.probabilities.slang) {
       phrase.setSlang(new Word(slang.label));
     }
 

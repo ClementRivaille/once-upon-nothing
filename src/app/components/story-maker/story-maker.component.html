@@ -1,0 +1,6 @@
+<div>
+  <p>{{ story }}</p>
+  <button (click)="writeStory()">New story</button>
+  <button (click)="displayOptions=!displayOptions">More Options</button>
+  <story-options *ngIf="displayOptions" [configuration]=configuration></story-options>
+</div>
