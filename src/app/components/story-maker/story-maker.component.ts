@@ -5,7 +5,8 @@ import { Writer } from '../../../lib/writer';
 
 @Component({
   selector: 'story-maker',
-  templateUrl: 'src/app/components/story-maker/story-maker.component.html'
+  templateUrl: 'src/app/components/story-maker/story-maker.component.html',
+  styleUrls: ['styles/css/story-maker.component.css']
 })
 export class StoryMakerComponent implements OnInit { 
   // Will generate every sentences for us

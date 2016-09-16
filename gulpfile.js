@@ -6,6 +6,7 @@ var connect = require('gulp-connect');
 var openBrowser = require('gulp-open');
 var sourcemaps = require('gulp-sourcemaps');
 var browserSync = require('browser-sync').create();
+var less = require('gulp-less');
 
 // Build js
 function compile() {
@@ -25,8 +26,16 @@ function compile() {
 }
 gulp.task('compile', compile);
 
+// Build less
+gulp.task('less', function() {
+  return gulp.src('styles/less/*.less')
+    .pipe(less())
+    .pipe(gulp.dest('styles/css'));
+
+});
+
 // Run the development server
-gulp.task('serve', ['compile'], function() {
+gulp.task('serve', ['compile', 'less'], function() {
   return browserSync.init({
     server: {
       baseDir: './'
@@ -37,14 +46,17 @@ gulp.task('serve', ['compile'], function() {
 });
 
 // Watch
-gulp.task('reload-js', ['compile'], function() {
+var reload = function(done) {
   browserSync.reload();
   done();
-});
-gulp.task('watch', ['compile'], function() {
+};
+gulp.task('reload-js', ['compile'], reload);
+gulp.task('reload-css', ['less'], reload);
+gulp.task('watch', ['compile', 'less'], function() {
   gulp.watch('./src/**/*.ts', ['compile', 'reload-js']);
+  gulp.watch('./**/*.less', ['less', 'reload-css']);
   gulp.watch('./**/*.html').on('change', browserSync.reload);
 });
 
 // Main
-gulp.task('default', ['compile', 'serve', 'watch']);
+gulp.task('default', ['compile', 'less', 'serve', 'watch']);

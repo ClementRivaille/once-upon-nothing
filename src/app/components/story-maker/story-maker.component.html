@@ -1,6 +1,11 @@
-<div>
+<div class="container">
   <p>{{ story }}</p>
-  <button (click)="writeStory()">New story</button>
-  <button (click)="displayOptions=!displayOptions">More Options</button>
-  <story-options *ngIf="displayOptions" [configuration]=configuration></story-options>
+  <div class="buttons">
+    <button class="btn btn-primary btn-lg btn-block" (click)="writeStory()">New story</button>
+    <button class="btn btn-default btn-sm btn-block btn-options" (click)="displayOptions=!displayOptions">
+      <span *ngIf="!displayOptions">More options</span>
+      <span *ngIf="displayOptions">Less options</span>
+    </button>
+  </div>
+  <story-options class="options" *ngIf="displayOptions" [configuration]=configuration></story-options>
 </div>
