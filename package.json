@@ -6,7 +6,7 @@
   "scripts": {
     "postinstall": "typings install",
     "build": "gulp compile",
-    "start": "gulp run"
+    "start": "gulp"
   },
   "author": "Clément RIVAILLE",
   "license": "ISC",

@@ -1,4 +1,4 @@
-node_modules
-typings
-build
-styles/css
+*.ts
+*.less
+*.map
+*.md

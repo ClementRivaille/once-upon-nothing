@@ -1,0 +1,26 @@
+.container {
+  margin-top: 25vh;
+}
+p {
+  text-align: center;
+  color: grey;
+  font-size: 2em;
+  margin-bottom: 10%;
+}
+.buttons {
+  margin-left: auto;
+  margin-right: auto;
+  width: 25%;
+}
+.buttons .btn {
+  text-align: center;
+}
+.buttons .btn-block {
+  margin-bottom: 2em;
+}
+.buttons .btn-options {
+  width: 50%;
+  min-width: 8em;
+  margin-left: auto;
+  margin-right: auto;
+}
