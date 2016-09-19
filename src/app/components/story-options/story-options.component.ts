@@ -4,7 +4,8 @@ import { Writer } from '../../../lib/writer'
 
 @Component({
   selector: 'story-options',
-  templateUrl: 'src/app/components/story-options/story-options.component.html'
+  templateUrl: 'src/app/components/story-options/story-options.component.html',
+  styleUrls: ['styles/css/story-options.component.css']
 })
 export class StoryOptionsComponent {
 
