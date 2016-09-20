@@ -7,6 +7,15 @@ var openBrowser = require('gulp-open');
 var sourcemaps = require('gulp-sourcemaps');
 var browserSync = require('browser-sync').create();
 var less = require('gulp-less');
+var del = require('del');
+
+gulp.task('clean-js', function() {
+  return del(['build']);
+});
+gulp.task('clean-css', function() {
+  return del(['styles/css']);
+});
+gulp.task('clean', ['clean-js', 'clean-css']);
 
 // Build js
 function compile() {
@@ -24,10 +33,10 @@ function compile() {
     }))
     .pipe(gulp.dest('build'));
 }
-gulp.task('compile', compile);
+gulp.task('compile', ['clean-js'], compile);
 
 // Build less
-gulp.task('less', function() {
+gulp.task('less', ['clean-css'], function() {
   return gulp.src('styles/less/*.less')
     .pipe(less())
     .pipe(gulp.dest('styles/css'));
@@ -59,4 +68,7 @@ gulp.task('watch', ['compile', 'less'], function() {
 });
 
 // Main
-gulp.task('default', ['compile', 'less', 'serve', 'watch']);
+gulp.task('default', ['clean', 'compile', 'less', 'serve', 'watch']);
+
+// Build
+gulp.task('build', ['clean', 'compile', 'less']);

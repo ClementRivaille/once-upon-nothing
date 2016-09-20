@@ -5,7 +5,7 @@
   "main": "",
   "scripts": {
     "postinstall": "typings install",
-    "build": "gulp compile",
+    "build": "gulp build",
     "start": "gulp"
   },
   "author": "Clément RIVAILLE",
