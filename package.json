@@ -1,12 +1,12 @@
 {
   "name": "once-upon-nothing",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Make random sentences, forming random nonsense.",
   "main": "",
   "scripts": {
     "postinstall": "typings install",
-    "build": "gulp compile",
-    "start": "gulp run"
+    "build": "gulp build",
+    "start": "gulp"
   },
   "author": "Clément RIVAILLE",
   "license": "ISC",
@@ -39,6 +39,7 @@
   "devDependencies": {
     "browser-sync": "^2.16.0",
     "concurrently": "^2.2.0",
+    "del": "^2.2.2",
     "gulp": "^3.9.1",
     "gulp-less": "^3.1.0",
     "gulp-sourcemaps": "^1.6.0",
