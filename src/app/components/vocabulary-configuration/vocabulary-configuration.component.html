@@ -1,5 +1,15 @@
 <div class="container">
-  <a [routerLink]="['/']">Back</a>
+  <a [routerLink]="['/']" class="btn btn-default">Back</a>
 
-  <pre>{{ vocabulary | json }}</pre>
+  <ul class="nav nav-tabs">
+    <li *ngFor="let type of components" [ngClass]="{active: shownComponent === type}">
+      <a (click)="shownComponent = type">{{ type | capitalize }}</a>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane active">
+      <pre>{{ vocabulary[shownComponent] | json }}</pre>
+    </div>
+  </div>
 </div>

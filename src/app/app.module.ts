@@ -8,13 +8,14 @@ import { StoryMakerComponent } from './components/story-maker/story-maker.compon
 import { StoryOptionsComponent } from './components/story-options/story-options.component';
 import { VocabularyConfigurationComponent } from './components/vocabulary-configuration/vocabulary-configuration.component';
 import { VocabularyService } from './services/vocabulary.service';
-import { MapToIterable } from './services/map-to-iterable.pipe';
+import { MapToIterable } from './pipes/map-to-iterable.pipe';
+import { Capitalize } from './pipes/capitalize.pipe';
 
 import { routing } from './app.routing';
 
 @NgModule({
   imports: [ BrowserModule, HttpModule, JsonpModule, FormsModule, routing ],
-  declarations: [ AppComponent, StoryMakerComponent, StoryOptionsComponent, MapToIterable, VocabularyConfigurationComponent ],
+  declarations: [ AppComponent, StoryMakerComponent, StoryOptionsComponent, MapToIterable, Capitalize, VocabularyConfigurationComponent ],
   bootstrap: [ AppComponent ],
   providers: [ VocabularyService ]
 })
