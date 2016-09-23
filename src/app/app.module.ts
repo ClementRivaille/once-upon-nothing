@@ -7,15 +7,17 @@ import { AppComponent } from './app.component';
 import { StoryMakerComponent } from './components/story-maker/story-maker.component';
 import { StoryOptionsComponent } from './components/story-options/story-options.component';
 import { VocabularyConfigurationComponent } from './components/vocabulary-configuration/vocabulary-configuration.component';
+import { WordSettingsComponent } from './components/word-settings/word-settings.component';
 import { VocabularyService } from './services/vocabulary.service';
 import { MapToIterable } from './pipes/map-to-iterable.pipe';
 import { Capitalize } from './pipes/capitalize.pipe';
+import { WordLabel } from './pipes/word-label.pipe';
 
 import { routing } from './app.routing';
 
 @NgModule({
   imports: [ BrowserModule, HttpModule, JsonpModule, FormsModule, routing ],
-  declarations: [ AppComponent, StoryMakerComponent, StoryOptionsComponent, MapToIterable, Capitalize, VocabularyConfigurationComponent ],
+  declarations: [ AppComponent, StoryMakerComponent, StoryOptionsComponent, MapToIterable, Capitalize, VocabularyConfigurationComponent, WordSettingsComponent, WordLabel ],
   bootstrap: [ AppComponent ],
   providers: [ VocabularyService ]
 })

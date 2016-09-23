@@ -1,0 +1,11 @@
+<div class="word-settings">
+  <div class="header" (click)="collapse()">{{ word.label | wordLabel }}</div>
+  <div class="content" [@collapse]="open">
+    <div class="form-group">
+    <label class="control-label">Label</label>
+    <div class="input-group">
+      <input class="form-control" [(ngModel)]="word.label"/>
+    </div>
+  </div>
+  </div>
+</div>
