@@ -1,4 +1,5 @@
 import {Component, Input, animate, trigger, state, transition, style} from '@angular/core';
+import { Template } from '../../../lib/word'
 
 @Component({
   selector: 'word-settings',
@@ -11,7 +12,7 @@ import {Component, Input, animate, trigger, state, transition, style} from '@ang
         transform: 'scaleY(0)'
       })),
       state('true', style({
-        'max-height': '100px',
+        'max-height': '160px',
         transform: 'scaleY(1)'
       })),
       transition('false <=> true', animate('0.25s ease'))
@@ -20,8 +21,9 @@ import {Component, Input, animate, trigger, state, transition, style} from '@ang
 })
 export class WordSettingsComponent {
 
-  @Input() word: any;
+  @Input() word: Template;
   @Input() type: string;
+  @Input() id: string;
 
   private open: string = 'false';
 

@@ -9,7 +9,7 @@
 
   <div class="tab-content">
     <div class="tab-pane active">
-      <word-settings *ngFor="let word of vocabulary[shownComponent]" [word]="word" [type]="shownComponent"></word-settings>
+      <word-settings *ngFor="let word of vocabulary[shownComponent]; let i = index" [word]="word" [type]="shownComponent" [id]="i"></word-settings>
     </div>
   </div>
 </div>
