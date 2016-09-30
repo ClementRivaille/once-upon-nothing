@@ -8,16 +8,20 @@ import { VocabularyService } from '../../services/vocabulary.service';
 })
 export class VocabularyConfigurationComponent implements OnInit {
   vocabulary: any = {};
-  components: Array<string> = [];
-  shownComponent: string = '';
+  types: Array<string> = [];
+  selectedType: string = '';
 
   constructor(private vocabularyService: VocabularyService) {}
 
   ngOnInit() {
     this.vocabularyService.getVocabulary().then(data => {
       this.vocabulary = data;
-      this.components = Object.getOwnPropertyNames(this.vocabulary);
-      this.shownComponent = this.components[0];
+      this.types = Object.getOwnPropertyNames(this.vocabulary);
+      this.selectedType = this.types[0];
     })
+  }
+
+  addWord(type: string) {
+    this.vocabulary[type].push({label: 'new (empty)'});
   }
 }
