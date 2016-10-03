@@ -3,14 +3,34 @@
   padding: 5px;
 
   .header {
-    background-color: green;
-    color: white;
+    background-color: #619b61;
     border-radius: 10px;
     padding-left: 10px;
-    font-weight: bold;
-    font-size: 1.1em;
-    cursor: pointer;
     min-height: 1.2em;
+
+    a {
+      color: white;
+      font-size: 1.1em;
+      font-weight: bold;
+      cursor: pointer;
+
+      &:hover, &:focus {
+        text-decoration: none;
+        color: white;
+      }
+    }
+
+    button.btn-delete {
+      background: none;
+      border: none;
+      padding-top: 2px;
+      font-size: 1.1em;
+      color: #922f2f;
+
+      &:hover {
+        color: #e6b2b2;
+      }
+    }
   }
 
   .content {

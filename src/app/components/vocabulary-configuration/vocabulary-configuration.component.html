@@ -9,7 +9,7 @@
 
   <div class="tab-content">
     <div class="tab-pane active">
-      <word-settings *ngFor="let word of vocabulary[selectedType]; let i = index" [word]="word" [type]="selectedType" [id]="i"></word-settings>
+      <word-settings *ngFor="let word of vocabulary[selectedType]; let i = index" [word]="word" [type]="selectedType" [id]="i" (onDelete)="removeWord(i, selectedType)"></word-settings>
       <div class="pull-right">
         <button class="btn btn-lg btn-primary add-button" (click)="addWord(selectedType)"><i class="fa fa-plus"></i></button>
       </div>

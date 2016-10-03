@@ -24,4 +24,8 @@ export class VocabularyConfigurationComponent implements OnInit {
   addWord(type: string) {
     this.vocabulary[type].push({label: 'new (empty)'});
   }
+
+  removeWord(index: number, type: string) {
+    this.vocabulary[type].splice(index, 1);
+  }
 }

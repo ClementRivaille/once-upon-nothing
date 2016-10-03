@@ -1,5 +1,8 @@
-<div class="word-settings">
-  <div class="header" (click)="collapse()">{{ word.label | wordLabel }}</div>
+<div class="word-settings" [@delete]="deleting" (@delete.done)="delete()">
+  <div class="header">
+    <a (click)="collapse()">{{ word.label | wordLabel }}</a>
+    <button class="pull-right btn-delete" (click)="deleteAnimation()"><i class="fa fa-times"></i></button>
+  </div>
   <div class="content" [@collapse]="open">
     
     <div class="form-group">

@@ -1,4 +1,4 @@
-import {Component, Input, animate, trigger, state, transition, style} from '@angular/core';
+import {Component, Input, Output, EventEmitter, animate, trigger, state, transition, style, keyframes} from '@angular/core';
 import { Template } from '../../../lib/word'
 
 @Component({
@@ -16,7 +16,23 @@ import { Template } from '../../../lib/word'
         transform: 'scaleY(1)'
       })),
       transition('false <=> true', animate('0.25s ease'))
-      ])
+      ]),
+    trigger('delete', [
+      state('true', style({
+        display: 'none'
+      })),
+      transition('false => true', animate('0.3s ease', keyframes([
+        style({
+          opacity: '0',
+          transform: 'translateX(-5%)',
+          offset: 0.5
+        }),
+        style({
+          'max-height': '0px',
+          offset: 1
+        })
+      ])))
+    ])
   ]
 })
 export class WordSettingsComponent {
@@ -24,10 +40,22 @@ export class WordSettingsComponent {
   @Input() word: Template;
   @Input() type: string;
   @Input() id: string;
+  @Output() onDelete: EventEmitter<void> = new EventEmitter<void>();
 
   private open: string = 'false';
+  private deleting: string = 'false';
 
   collapse() {
     this.open = this.open === 'false' ? 'true' : 'false';
+  }
+
+  deleteAnimation() {
+    this.deleting = 'true';
+  }
+
+  delete() {
+    if (this.deleting === 'true') {
+      this.onDelete.emit();
+    }
   }
 }
