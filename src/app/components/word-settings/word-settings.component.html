@@ -1,15 +1,13 @@
 <div class="word-settings" [@delete]="deleting" (@delete.done)="delete()">
   <div class="header">
-    <a (click)="collapse()">{{ word.label | wordLabel }}</a>
-    <button class="pull-right btn-delete" (click)="deleteAnimation()"><i class="fa fa-times"></i></button>
+    <button class="btn-link word-label" (click)="collapse()">{{ word.label | wordLabel }}</button>
+    <button class="pull-right btn-link delete" (click)="deleteAnimation()"><i class="fa fa-times"></i></button>
   </div>
   <div class="content" [@collapse]="open">
     
     <div class="form-group">
       <label class="control-label">Label</label>
-      <div class="input-group">
-        <input class="form-control" [(ngModel)]="word.label"/>
-      </div>
+      <input class="form-control" [(ngModel)]="word.label"/>
     </div>
 
     <div class="form-group" *ngIf="type === 'subjects'">
@@ -21,9 +19,7 @@
 
     <div class="form-group" *ngIf="type === 'verbs'">
       <label class="control-label">Third person conjugation</label>
-      <div class="input-group">
-        <input class="form-control" [(ngModel)]="word.third">
-      </div>
+      <input class="form-control" [(ngModel)]="word.third">
     </div>
 
     <div class="form-group" *ngIf="type === 'adjectives' || type === 'adverbs'">

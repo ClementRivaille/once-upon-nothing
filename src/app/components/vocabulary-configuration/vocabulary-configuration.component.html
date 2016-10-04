@@ -1,5 +1,10 @@
 <div class="container">
-  <a [routerLink]="['/']" class="btn btn-default">Back</a>
+  <div class="row configuration-header">
+    <a [routerLink]="'/'" class="btn btn-info">
+      <i class="fa fa-arrow-left"></i>
+      Back
+    </a>
+  </div>
 
   <ul class="nav nav-tabs">
     <li *ngFor="let type of types" [ngClass]="{active: selectedType === type}">

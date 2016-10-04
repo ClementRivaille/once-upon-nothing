@@ -21,14 +21,10 @@ import { Template } from '../../../lib/word'
       state('true', style({
         display: 'none'
       })),
-      transition('false => true', animate('0.3s ease', keyframes([
+      transition('false => true', animate('0.25s ease', keyframes([
         style({
           opacity: '0',
           transform: 'translateX(-5%)',
-          offset: 0.5
-        }),
-        style({
-          'max-height': '0px',
           offset: 1
         })
       ])))
