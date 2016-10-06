@@ -16,7 +16,7 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'once-upon-nothing-app',
-            template: '<h1>Once Upon Nothing</h1><story-maker></story-maker>',
+            template: '<h1>Once Upon Nothing</h1><router-outlet></router-outlet>',
             styleUrls: ['styles/css/app.component.css']
         }), 
         __metadata('design:paramtypes', [])

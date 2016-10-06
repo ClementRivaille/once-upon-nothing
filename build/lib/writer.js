@@ -38,8 +38,8 @@ var Writer = (function () {
         if (Math.random() < this.probabilities.adverb) {
             phrase.setAdverb(new word_1.Word(adverb.label, adverb.position));
         }
-        var target = pickOne(this.resources.targets);
-        phrase.setTarget(new word_1.Word(target.label));
+        var object = pickOne(this.resources.objects);
+        phrase.setObject(new word_1.Word(object.label));
         var adjective = pickOne(this.resources.adjectives);
         if (Math.random() < this.probabilities.adjective) {
             phrase.setAdjective(new word_1.Word(adjective.label, adjective.position));

@@ -19,9 +19,16 @@ footer a {
   color: white;
   font-weight: bold;
 }
-footer a:hover {
+footer a:hover,
+footer a:focus {
   text-decoration: none;
   color: white;
+}
+.loading-logo {
+  position: fixed;
+  color: lightblue;
+  top: 50%;
+  left: 50%;
 }
 @keyframes fadein {
   from {

@@ -7,7 +7,7 @@ var __extends = (this && this.__extends) || function (d, b) {
 var word_1 = require('./word');
 /**
  * A phrase is an expression composed of organized words
- * It's mosly composed of suject + verb + target.
+ * It's mosly composed of suject + verb + object.
  * The phrase handles the conjugation of its verb, and templating of some components.
  */
 var Phrase = (function (_super) {
@@ -33,8 +33,8 @@ var Phrase = (function (_super) {
     Phrase.prototype.setAdjective = function (adjective) {
         this.adjective = adjective;
     };
-    Phrase.prototype.setTarget = function (target) {
-        this.target = target;
+    Phrase.prototype.setObject = function (object) {
+        this.object = object;
     };
     Phrase.prototype.setSlang = function (slang) {
         this.slang = slang;
@@ -43,14 +43,14 @@ var Phrase = (function (_super) {
         // Ver: put adverb and conjugate
         this.verb.setComplement(this.adverb);
         this.verb.conjugate(this.subject.third);
-        // Put adjective on target
-        this.target.setComplement(this.adjective);
+        // Put adjective on object
+        this.object.setComplement(this.adjective);
         // Writing the expression by printing every components in order
         this.expression =
             (this.conjunction ? this.conjunction.print() + ' ' : '') +
                 this.subject.print() + ' ' +
                 this.verb.print() + ' ' +
-                this.target.print() +
+                this.object.print() +
                 (this.detail ? ' ' + this.detail.print() : '') +
                 (this.slang ? ' ' + this.slang.print() : '') +
                 '.';
