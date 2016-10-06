@@ -2,7 +2,7 @@ import { Template, Complement, Text, Subject, Verb } from './word';
 
 /**
  * A phrase is an expression composed of organized words
- * It's mosly composed of suject + verb + target.
+ * It's mosly composed of suject + verb + object.
  * The phrase handles the conjugation of its verb, and templating of some components.
  */
 export class Phrase extends Template {
@@ -12,7 +12,7 @@ export class Phrase extends Template {
   protected detail: Text;
   protected verb: Verb;
   protected adjective: Complement;
-  protected target: Template;
+  protected object: Template;
   protected slang: Text;
 
   setConjunction(conjunction: Text) {
@@ -33,8 +33,8 @@ export class Phrase extends Template {
   setAdjective(adjective: Complement) {
     this.adjective = adjective;
   }
-  setTarget(target: Template) {
-    this.target = target;
+  setObject(object: Template) {
+    this.object = object;
   }
   setSlang(slang: Text) {
     this.slang = slang;
@@ -44,15 +44,15 @@ export class Phrase extends Template {
     // Ver: put adverb and conjugate
     this.verb.setComplement(this.adverb);
     this.verb.conjugate(this.subject.third);
-    // Put adjective on target
-    this.target.setComplement(this.adjective);
+    // Put adjective on object
+    this.object.setComplement(this.adjective);
 
     // Writing the expression by printing every components in order
     this.expression = 
       (this.conjunction ? this.conjunction.print() + ' ' : '') +
       this.subject.print() + ' ' +
       this.verb.print() + ' ' +
-      this.target.print() +
+      this.object.print() +
       (this.detail ? ' ' + this.detail.print() : '') +
       (this.slang ? ' ' + this.slang.print() : '') +
       '.';

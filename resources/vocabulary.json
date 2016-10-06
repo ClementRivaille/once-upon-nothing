@@ -34,7 +34,7 @@
     {"label": "$0 draw $1", "third": "$0 draws $1"}
   ],
 
-  "targets": [
+  "objects": [
     {"label": "a $0 fish $1"},
     {"label": "$0 New York City $1"},
     {"label": "a $0 opera $1"},

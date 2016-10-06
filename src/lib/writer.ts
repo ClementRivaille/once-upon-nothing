@@ -46,8 +46,8 @@ export class Writer {
       phrase.setAdverb(new Word(adverb.label, adverb.position));
     }
 
-    let target = pickOne(this.resources.targets);
-    phrase.setTarget(new Word(target.label));
+    let object = pickOne(this.resources.objects);
+    phrase.setObject(new Word(object.label));
 
     let adjective = pickOne(this.resources.adjectives);
     if (Math.random() < this.probabilities.adjective) {
