@@ -1,6 +1,9 @@
 <div class="word-settings" [@delete]="deleting" (@delete.done)="delete()">
-  <div class="header">
-    <button class="btn-link word-label" (click)="collapse()">{{ word.label | wordLabel }}</button>
+  <div class="header {{type}}">
+    <button class="btn-link word-label" (click)="collapse()">
+      <i class="fa" [ngClass]="{'fa-caret-right': open==='false', 'fa-caret-down': open==='true'}"></i>&nbsp;
+      {{ word.label | wordLabel }}
+    </button>
     <button class="pull-right btn-link delete" (click)="deleteAnimation()"><i class="fa fa-times"></i></button>
   </div>
   <div class="content" [@collapse]="open">
