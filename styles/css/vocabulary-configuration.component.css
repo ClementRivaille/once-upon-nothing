@@ -1,0 +1,25 @@
+.configuration-header {
+  padding-bottom: 20px;
+}
+.nav-tabs a:hover {
+  cursor: pointer;
+}
+.add-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding: 5px 0px;
+  text-align: center;
+  transition: 0.2s ease-in-out;
+}
+.add-button:hover {
+  transform: scale(1.2);
+  background-color: #b74646;
+  border: none;
+}
+.type-description {
+  padding-top: 10px;
+  color: grey;
+}

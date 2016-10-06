@@ -9,26 +9,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var MapToIterable = (function () {
-    function MapToIterable() {
+var WordLabel = (function () {
+    function WordLabel() {
     }
-    MapToIterable.prototype.transform = function (dict) {
-        var a = [];
-        for (var key in dict) {
-            if (dict.hasOwnProperty(key)) {
-                a.push(key);
-            }
-        }
-        return a;
+    /**
+     * Perform the same treatment as Template.clean()
+     */
+    WordLabel.prototype.transform = function (label) {
+        return label
+            .replace(/ ?\$[0-9]/g, '')
+            .replace(/  +/g, ' ')
+            .replace(/(^ )|( $)/g, '')
+            .replace(/((?:^| )a) ([aeiouy])/g, '$1n $2')
+            .replace(/ ([,.])/g, '$1');
     };
-    MapToIterable = __decorate([
+    WordLabel = __decorate([
         core_1.Pipe({
-            name: 'mapToIterable'
+            name: 'wordLabel'
         }), 
         __metadata('design:paramtypes', [])
-    ], MapToIterable);
-    return MapToIterable;
+    ], WordLabel);
+    return WordLabel;
 }());
-exports.MapToIterable = MapToIterable;
+exports.WordLabel = WordLabel;
 
-//# sourceMappingURL=http://localhost:4057/build/app/services/map-to-iterable.pipe.js.map
+//# sourceMappingURL=http://localhost:4057/build/app/pipes/word-label.pipe.js.map
