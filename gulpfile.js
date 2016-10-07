@@ -47,10 +47,13 @@ gulp.task('less', ['clean-css'], function() {
 gulp.task('serve', ['compile', 'less'], function() {
   return browserSync.init({
     server: {
-      baseDir: './'
+      baseDir: 'none',
+      routes: {
+        '/once-upon-nothing': '.'
+      }
     },
     port: 4057,
-    startPath: '/index.html'
+    startPath: '/once-upon-nothing'
   });
 });
 

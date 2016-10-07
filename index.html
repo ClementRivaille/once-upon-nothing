@@ -16,9 +16,9 @@
     <!-- 2. Configure SystemJS -->
     <script src="systemjs.config.js"></script>
     <script>
+      window['_app_base'] = '/' + window.location.pathname.split('/')[1];
       System.import('app').catch(function(err){ console.error(err); });
     </script>
-    <base href="/"/>
   </head>
   <!-- 3. Display the application -->
   <body>
