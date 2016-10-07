@@ -12,6 +12,7 @@ var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var http_1 = require('@angular/http');
 var forms_1 = require('@angular/forms');
+var common_1 = require('@angular/common');
 var app_component_1 = require('./app.component');
 var story_maker_component_1 = require('./components/story-maker/story-maker.component');
 var story_options_component_1 = require('./components/story-options/story-options.component');
@@ -30,7 +31,10 @@ var AppModule = (function () {
             imports: [platform_browser_1.BrowserModule, http_1.HttpModule, http_1.JsonpModule, forms_1.FormsModule, app_routing_1.routing],
             declarations: [app_component_1.AppComponent, story_maker_component_1.StoryMakerComponent, story_options_component_1.StoryOptionsComponent, map_to_iterable_pipe_1.MapToIterable, capitalize_pipe_1.Capitalize, vocabulary_configuration_component_1.VocabularyConfigurationComponent, word_settings_component_1.WordSettingsComponent, word_label_pipe_1.WordLabel],
             bootstrap: [app_component_1.AppComponent],
-            providers: [vocabulary_service_1.VocabularyService]
+            providers: [
+                vocabulary_service_1.VocabularyService,
+                { provide: common_1.APP_BASE_HREF, useValue: window['_app_base'] || '/' }
+            ]
         }), 
         __metadata('design:paramtypes', [])
     ], AppModule);
