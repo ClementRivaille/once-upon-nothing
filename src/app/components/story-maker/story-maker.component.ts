@@ -18,6 +18,8 @@ export class StoryMakerComponent implements OnInit {
     nbSentences: 1,
     probabilities: {}
   }
+  // Error preventing sentences to be made;
+  private error: string = '';
 
   constructor(private vocabularyService: VocabularyService) {}
 
@@ -29,9 +31,15 @@ export class StoryMakerComponent implements OnInit {
     // Get vocubulary resources
     this.vocabularyService.getVocabulary().then(vocabulary => {
       this.writer.registerResources(vocabulary);
-        
-      // Write a first story 
-      this.writeStory();
+
+      // Check if vocabulary is valid
+      if (this.vocabularyService.validData()) {
+        // Write a first story 
+        this.writeStory();
+      }
+      else {
+        this.error = 'vocabulary';
+      }
     }).catch(err => {
       throw err;
     });

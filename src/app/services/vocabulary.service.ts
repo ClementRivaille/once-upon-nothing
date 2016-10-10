@@ -10,6 +10,7 @@ export class VocabularyService {
 
   private resourcesPath: string = 'resources/vocabulary.json';
   private resourcesCache: any;
+  private wordTypes: Array<string> = ['subjects', 'verbs', 'objects', 'adverbs', 'adjectives', 'details', 'slangs', 'conjunctions'];
 
   constructor(private http: Http) {}
 
@@ -24,6 +25,22 @@ export class VocabularyService {
     else {
       return Promise.resolve(this.resourcesCache);
     }
+  }
+
+  /**
+   * Check if vocabulary has every needed words
+   * Must be called after a first getVocabulary
+   */
+  validData(): boolean {
+    var valid = true;
+    for (let typeWord of this.wordTypes) {
+      valid = this.resourcesCache && this.resourcesCache[typeWord] && this.resourcesCache[typeWord].length;
+      if (!valid) {
+        break;
+      }
+    }
+
+    return valid;
   }
 
   /**
