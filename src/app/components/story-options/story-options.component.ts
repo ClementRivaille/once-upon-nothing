@@ -12,4 +12,12 @@ export class StoryOptionsComponent {
   public probabilitiesKeys: Array<string>;
 
   @Input() configuration: any;
+
+  // Force nbSentences to always be positive
+  get nbSentencesModel() {
+    return this.configuration.nbSentences;
+  }
+  set nbSentencesModel(value) {
+    this.configuration.nbSentences = value > 0 ? value : 1;
+  }
 }
