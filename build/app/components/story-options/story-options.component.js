@@ -12,6 +12,17 @@ var core_1 = require('@angular/core');
 var StoryOptionsComponent = (function () {
     function StoryOptionsComponent() {
     }
+    Object.defineProperty(StoryOptionsComponent.prototype, "nbSentencesModel", {
+        // Force nbSentences to always be positive
+        get: function () {
+            return this.configuration.nbSentences;
+        },
+        set: function (value) {
+            this.configuration.nbSentences = value > 0 ? value : 1;
+        },
+        enumerable: true,
+        configurable: true
+    });
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)

@@ -2,7 +2,7 @@
   <div class="form-group">
     <label class="col-xs-5 col-sm-12 col-md-5 control-label">Number of sentences</label>
     <div class="col-xs-7 col-sm-12 col-md-7 input-group">
-      <input type="number" class="form-control" min="1" [(ngModel)]="configuration.nbSentences"/>
+      <input type="number" class="form-control" min="1" [(ngModel)]="nbSentencesModel"/>
     </div>
   </div>
   <div class="form-group" *ngFor="let prob of configuration.probabilities | mapToIterable">

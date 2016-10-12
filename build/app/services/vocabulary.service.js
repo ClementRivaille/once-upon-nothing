@@ -18,6 +18,7 @@ var VocabularyService = (function () {
     function VocabularyService(http) {
         this.http = http;
         this.resourcesPath = 'resources/vocabulary.json';
+        this.wordTypes = ['subjects', 'verbs', 'objects', 'adverbs', 'adjectives', 'details', 'slangs', 'conjunctions'];
     }
     /**
      * Retrieve resources in json file or cached
@@ -29,6 +30,21 @@ var VocabularyService = (function () {
         else {
             return Promise.resolve(this.resourcesCache);
         }
+    };
+    /**
+     * Check if vocabulary has every needed words
+     * Must be called after a first getVocabulary
+     */
+    VocabularyService.prototype.validData = function () {
+        var valid = true;
+        for (var _i = 0, _a = this.wordTypes; _i < _a.length; _i++) {
+            var typeWord = _a[_i];
+            valid = this.resourcesCache && this.resourcesCache[typeWord] && this.resourcesCache[typeWord].length;
+            if (!valid) {
+                break;
+            }
+        }
+        return valid;
     };
     /**
      * Load from JSON file

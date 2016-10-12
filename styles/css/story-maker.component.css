@@ -1,9 +1,15 @@
 .container {
   margin-top: 25vh;
 }
-p {
+.story {
   text-align: center;
   color: grey;
+  font-size: 2em;
+  margin-bottom: 10%;
+}
+.error {
+  text-align: center;
+  color: red;
   font-size: 2em;
   margin-bottom: 10%;
 }

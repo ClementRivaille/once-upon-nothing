@@ -21,6 +21,8 @@ var StoryMakerComponent = (function () {
             nbSentences: 1,
             probabilities: {}
         };
+        // Error preventing sentences to be made;
+        this.error = '';
     }
     StoryMakerComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -29,8 +31,14 @@ var StoryMakerComponent = (function () {
         // Get vocubulary resources
         this.vocabularyService.getVocabulary().then(function (vocabulary) {
             _this.writer.registerResources(vocabulary);
-            // Write a first story 
-            _this.writeStory();
+            // Check if vocabulary is valid
+            if (_this.vocabularyService.validData()) {
+                // Write a first story 
+                _this.writeStory();
+            }
+            else {
+                _this.error = 'vocabulary';
+            }
         }).catch(function (err) {
             throw err;
         });
