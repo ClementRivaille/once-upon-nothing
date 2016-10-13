@@ -1,12 +1,13 @@
 {
   "name": "once-upon-nothing",
-  "version": "1.1.2",
+  "version": "2.0.0",
   "description": "Make random sentences, forming random nonsense.",
-  "main": "",
+  "main": "build/src/electron/main.js",
   "scripts": {
     "postinstall": "typings install",
     "build": "gulp build",
-    "start": "gulp"
+    "start": "gulp",
+    "electron-packager": "electron-packager . once-upon-nothing --overwrite --out=release"
   },
   "author": "Clément RIVAILLE",
   "license": "ISC",
@@ -40,6 +41,7 @@
     "browser-sync": "^2.16.0",
     "concurrently": "^2.2.0",
     "del": "^2.2.2",
+    "electron-prebuilt": "^1.4.3",
     "gulp": "^3.9.1",
     "gulp-less": "^3.1.0",
     "gulp-sourcemaps": "^1.6.0",
