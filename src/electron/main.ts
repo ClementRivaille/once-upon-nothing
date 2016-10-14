@@ -20,8 +20,18 @@ function createWindow() {
 
   // Load main page
   win.loadURL(`file://${__dirname}/../../index.html`);
+  let content = win.webContents;
 
-  // Open dev tools (?)
+  content.on('did-finish-load', function() {
+    // Do not display link to sources
+    content.insertCSS(`
+      footer {
+        display: none !important;
+      }
+      `);
+  });
+
+  // Open dev tools
   // win.webContents.openDevTools();
 
  // Emitted on closing window

@@ -2,12 +2,13 @@
   "name": "once-upon-nothing",
   "version": "2.0.0",
   "description": "Make random sentences, forming random nonsense.",
-  "main": "build/src/electron/main.js",
+  "main": "build/electron/main.js",
   "scripts": {
     "postinstall": "typings install",
     "build": "gulp build",
     "start": "gulp",
-    "electron-packager": "electron-packager . once-upon-nothing --overwrite --out=release"
+    "electron-packager": "electron-packager . once-upon-nothing --overwrite --out=release --ignore=\"(.*\\.ts)|(.*\\.js\\.map)|(.*\\.less)|(cache)|(typings)|(gulpfile.js)|(tsconfig.json)\"",
+    "app-build": "npm-run-all build electron-packager"
   },
   "author": "Clément RIVAILLE",
   "license": "ISC",
@@ -48,6 +49,7 @@
     "jscs": "^3.0.7",
     "jshint": "^2.9.3",
     "lite-server": "^2.2.0",
+    "npm-run-all": "^3.1.0",
     "typescript": "^1.8.10",
     "typings": "^1.3.2"
   }
