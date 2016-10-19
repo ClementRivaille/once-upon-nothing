@@ -39,4 +39,8 @@ export class VocabularyConfigurationComponent implements OnInit {
   removeWord(index: number, type: string) {
     this.vocabulary[type].splice(index, 1);
   }
+
+  saveVocabulary() {
+    this.vocabularyService.saveVocabulary();
+  }
 }

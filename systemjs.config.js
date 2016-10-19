@@ -47,4 +47,12 @@
     packages: packages
   };
   System.config(config);
+
+  // Electron inclusion
+  var ELECTRON_DETECTED  = (window && window.process && window.process.type) == 'renderer';
+  if (ELECTRON_DETECTED) {
+    System.set('electron', System.newModule(require('electron')));
+  } else {
+    System.set('electron', System.newModule({})); // Makes dummy
+  }
 })(this);

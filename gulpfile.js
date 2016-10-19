@@ -49,7 +49,8 @@ gulp.task('serve', ['compile', 'less'], function() {
     server: {
       baseDir: 'none',
       routes: {
-        '/once-upon-nothing': '.'
+        '/once-upon-nothing': '.',
+        '/build': 'build'
       }
     },
     port: 4057,

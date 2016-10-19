@@ -3,7 +3,9 @@ const electron = require('electron');
 const {app} = electron;
 // Module to create native browser window
 const {BrowserWindow} = electron;
-const {onceUponMain} = electron;
+const {ipcMain} = electron;
+
+import fs = require('fs');
 
 // global reference to the window
 let win;
@@ -59,4 +61,18 @@ app.on('activate', () => {
   if (win === null) {
     createWindow();
   }
+});
+
+// Give path to vocabulary file
+ipcMain.on('vocabulary-path', (event, args) => {
+  event.sender.send('vocabulary-path', `resources/local-vocabulary.json`);
+});
+
+// Save file
+ipcMain.on('save-vocabulary', (event, data) => {
+  fs.writeFile(`${__dirname}/../../resources/local-vocabulary.json`, JSON.stringify(data, null, ' '), (error) => {
+    if (error) {
+      console.error(error);
+    }
+  });
 });
