@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { VocabularyService } from '../../services/vocabulary.service';
+import { ipcRenderer } from 'electron';
 
 @Component({
   selector: 'vocabulary-config',
@@ -7,10 +8,19 @@ import { VocabularyService } from '../../services/vocabulary.service';
   styleUrls: ['styles/css/vocabulary-configuration.component.css']
 })
 export class VocabularyConfigurationComponent implements OnInit {
+  // Vowabulary properties
   vocabulary: any = {};
   types: Array<string> = [];
   selectedType: string = '';
 
+  // Indicates if the app is running locally or not
+  local: boolean = false;
+  // Alert message
+  showAlert: boolean = false;
+  // Path of saved files
+  savedIn: string = '';
+
+  // Labels describing each type
   guideLabels: any = {
     'subjects': 'Subjects are nouns placed at the beginning of a sentence. Since they conjugate the verb, they must declare if they do it in third person.',
     'adverbs': 'Adverbs are not strictly adverbs: they are complementing a verb in a sentence. They has to be placed before or after it.',
@@ -22,25 +32,39 @@ export class VocabularyConfigurationComponent implements OnInit {
     'conjunctions': 'When a story use several sentences, those are linked by conjunctions. Conjuctions are placed at the very beginning of a sentence, to make a transition with the previous one.'
   }
 
-  constructor(private vocabularyService: VocabularyService) {}
+
+  constructor(private vocabularyService: VocabularyService) {
+    // Check if running locally
+    if (typeof ipcRenderer != 'undefined') {
+      this.local = true;
+    }
+  }
 
   ngOnInit() {
+    // Retrieve vocabulary from service
     this.vocabularyService.getVocabulary().then(data => {
       this.vocabulary = data;
-      this.types = Object.getOwnPropertyNames(this.vocabulary);
+      this.types = Object.getOwnPropertyNames(this.guideLabels);
       this.selectedType = this.types[0];
     })
   }
 
+  /** Create a new word in type category */
   addWord(type: string) {
     this.vocabulary[type].push({label: 'new (empty)'});
   }
 
+  /** Delete a word from a category by its index */
   removeWord(index: number, type: string) {
     this.vocabulary[type].splice(index, 1);
   }
 
+  /** On local app only, save the current vocabulary into a file */
   saveVocabulary() {
-    this.vocabularyService.saveVocabulary();
+    this.vocabularyService.saveVocabulary().then((path) => {
+      // Display success message
+      this.showAlert = true;
+      this.savedIn = path;
+    });
   }
 }

@@ -68,6 +68,10 @@ export class VocabularyService {
     return valid;
   }
 
+  /**
+   * On local app, save vocabulary in cache into a file
+   * @return {Promise<string>} path of saved file
+   */
   saveVocabulary(): Promise<any> {
     if (typeof ipcRenderer != 'undefined') {
       // Send a message to electron to save the file locally
@@ -75,8 +79,8 @@ export class VocabularyService {
 
       // Wait for response
       let savedPromise : Promise<any> = new Promise<any>((resolve) => {
-        ipcRenderer.on('vocabulary-saved', () => {
-          resolve();
+        ipcRenderer.on('vocabulary-saved', (event, data) => {
+          resolve(data);
         });
       });
 
@@ -91,16 +95,20 @@ export class VocabularyService {
    * Load from JSON file
    */
   private loadResources(): Promise<any> {
+    // Wait ready
     return this.ready.then(() => {
+      // GET resources file
       return this.http.get(this.resourcesPath).toPromise();
       }).then(res => {
         let data = res.json();
+        // Resources are written in a permanent cache
         this.resourcesCache = data;
         return this.resourcesCache;
       }).catch(error => {
         console.log(error);
+        // If file is not found, maybe it need to be instanciated
         if (this.resourcesPath !== this.defaultResourcesPath) {
-          // Initialize resources
+          // Initialize resources with default ones
           return this.http.get(this.defaultResourcesPath).toPromise()
             .then(res => {
               let data = res.json();
@@ -117,6 +125,9 @@ export class VocabularyService {
       });
   }
 
+  /**
+   * Just display errors
+   */
   private handleError (error: any) {
     let errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';

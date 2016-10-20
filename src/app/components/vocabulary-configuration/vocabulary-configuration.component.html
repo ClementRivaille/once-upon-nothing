@@ -4,9 +4,16 @@
       <i class="fa fa-arrow-left"></i>
       Back
     </a>
-    <a (click)="saveVocabulary()" class="btn btn-primary">
+    <a (click)="saveVocabulary()" class="btn btn-primary pull-right" *ngIf="local">
       Save
     </a>
+  </div>
+
+  <div class="alert alert-success alert-dismissible fade in" role="alert" *ngIf="showAlert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="showAlert = false">
+      <i aria-hidden="true" class="fa fa-times"></i>
+    </button>
+    The vocabulary has been successfully saved in <strong>{{ savedIn }}</strong>.
   </div>
 
   <ul class="nav nav-tabs">

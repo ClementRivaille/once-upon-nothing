@@ -6,6 +6,7 @@ const {BrowserWindow} = electron;
 const {ipcMain} = electron;
 
 import fs = require('fs');
+import path = require('path');
 
 // global reference to the window
 let win;
@@ -13,8 +14,11 @@ let win;
 function createWindow() {
   // Create the browser window
   win = new BrowserWindow({
-    width: 800,
-    height: 600
+    useContentSize: true,
+    height: 720,
+    width: 1080,
+    minHeight: 600,
+    minWidth: 800
   });
 
   // No menu
@@ -73,6 +77,9 @@ ipcMain.on('save-vocabulary', (event, data) => {
   fs.writeFile(`${__dirname}/../../resources/local-vocabulary.json`, JSON.stringify(data, null, ' '), (error) => {
     if (error) {
       console.error(error);
+    }
+    else {
+      event.sender.send('vocabulary-saved', path.resolve(`${__dirname}/../../resources/local-vocabulary.json`));
     }
   });
 });
