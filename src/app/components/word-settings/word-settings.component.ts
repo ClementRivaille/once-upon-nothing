@@ -6,6 +6,7 @@ import { Template } from '../../../lib/word'
   templateUrl: 'src/app/components/word-settings/word-settings.component.html',
   styleUrls: ['styles/css/word-settings.component.css'],
   animations: [
+    // Open / Close settings
     trigger('collapse', [
       state('false', style({
         'max-height': '0px',
@@ -17,6 +18,7 @@ import { Template } from '../../../lib/word'
       })),
       transition('false <=> true', animate('0.25s ease'))
       ]),
+    // Delete the word
     trigger('delete', [
       state('true', style({
         display: 'none'
@@ -41,15 +43,21 @@ export class WordSettingsComponent {
   private open: string = 'false';
   private deleting: string = 'false';
 
+  /** Open or close panel */
   collapse() {
     this.open = this.open === 'false' ? 'true' : 'false';
   }
 
+  /** Launch delete animation */
   deleteAnimation() {
     this.deleting = 'true';
   }
 
+  /** Emit delete event to container
+   * This is called after delete animation
+   */
   delete() {
+    // We must check if the animation is the correct one (and not the start one)
     if (this.deleting === 'true') {
       this.onDelete.emit();
     }
